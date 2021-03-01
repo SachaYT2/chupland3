@@ -17,7 +17,7 @@ bye_list = ['пока', 'удачи!', 'чуп!', 'bye', 'goodbye', 'bb']
 @client.event
 async def on_ready():
     print('logged on!')
-
+    await client.change_presence(status=discord.Status.online, activity= discord.Game('Чупленд'))
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -70,7 +70,11 @@ async def on_member_join(member):
                        f"Назначаю тебя Чупакабриком, надеюсь тебе понравится у нас.")
     await member.add_roles(role)
 
+@client.command(pass_context=True)
+async def hello(ctx, member: discord.Member):
+    await member.send(f'{member.name}, привет от {ctx.author.name}')
 
+    
 @client.event
 async def on_message(message):
     msg = message.content.lower()
