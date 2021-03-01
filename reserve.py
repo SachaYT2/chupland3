@@ -88,7 +88,7 @@ async def on_message(message):
         await message.channel.send('Чтобы узнать, что я умею, просто напиши команду .help')
     if msg in bye_list:
         await message.channel.send('Пока, удачи!')
-        with open('D:\\Programming\\Python\\chuplend bot2\\chuplvls.json', 'r') as f:
+    with open('D:\\Programming\\Python\\chuplend bot2\\chuplvls.json', 'r') as f:
         users = json.load(f)
 
     async def update_data(users, user):
