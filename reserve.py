@@ -88,6 +88,32 @@ async def on_message(message):
         await message.channel.send('Чтобы узнать, что я умею, просто напиши команду .help')
     if msg in bye_list:
         await message.channel.send('Пока, удачи!')
+        with open('D:\\Programming\\Python\\chuplend bot2\\chuplvls.json', 'r') as f:
+        users = json.load(f)
+
+    async def update_data(users, user):
+        if (user not in users) and (user != '798451540410105866'):
+            users[user] = {}
+            users[user]['xp'] = 0
+            users[user]['lvl'] = 1
+
+    async def add_xp(users, user, xp):
+        users[user]['xp'] += xp
+
+    async def add_lvl(users, user):
+        exp = users[user]['xp']
+        lvl = users[user]['lvl']
+        if exp > lvl:
+            users[user]['xp'] = 0
+            users[user]['lvl'] += 1
+            lvl = users[user]['lvl']
+            await message.channel.send(f'Чупленд поздравляет {message.author.mention} с достижением нового {lvl} уровня! ☺')
+
+    await update_data(users, str(message.author.id))
+    await add_xp(users, str(message.author.id), 0.1)
+    await add_lvl(users, str(message.author.id))
+    with open('D:\\Programming\\Python\\chuplend bot2\\chuplvls.json', 'w') as f:
+        json.dump(users, f)
    # for k in msg_list:
         #if k in black_list:
             #await message.delete()
