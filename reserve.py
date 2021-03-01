@@ -1,7 +1,6 @@
 import discord
 from discord import utils
 from discord.ext import commands
-
 import config
 
 client = commands.Bot(command_prefix='.', intents=discord.Intents.all())
@@ -88,6 +87,7 @@ async def on_message(message):
         await message.channel.send('Чтобы узнать, что я умею, просто напиши команду .help')
     if msg in bye_list:
         await message.channel.send('Пока, удачи!')
+        '''
     with open('D:\\Programming\\Python\\chuplend bot2\\chuplvls.json', 'r') as f:
         users = json.load(f)
 
@@ -117,8 +117,9 @@ async def on_message(message):
    # for k in msg_list:
         #if k in black_list:
             #await message.delete()
+      '''
     await client.process_commands(message)
-
+'''
 @client.command(pass_context=True)
 async def lvl(ctx):
     with open('D:\\Programming\\Python\\chuplend bot2\\chuplvls.json', 'r') as f:
@@ -134,7 +135,7 @@ async def poem(ctx, *, response):
         ctx.send('Огур, свет ты лучезарный\n' 
                             'Где гуляешь ты?\n'
                             'Какие перешел мосты?\n')
-'''
+
 мосты надежд, разлуки время
 губят меня словно тысячелетнее бремя
 
