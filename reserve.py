@@ -17,7 +17,7 @@ bye_list = ['пока', 'удачи!', 'чуп!', 'bye', 'goodbye', 'bb']
 @client.event
 async def on_ready():
     print('logged on!')
-    await client.change_presence(status=discord.Status.online, activity= discord.Game('Чупленд'))
+    await client.change_presence(status=discord.Status.online, activity= discord.Game('.info'))
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -138,6 +138,18 @@ async def clear(ctx, amount=100):
 async def ping(ctx):
     await ctx.send('pong')
 
-
+@client.command(pass_context=True)
+async def info(ctx, member: discord.Member):
+    emb = discord.Embed(title='Информация о пользователе', color=0xFF8000)
+    emb.add_field(name='Никнейм:', value=member.display_name, inline=False)
+    emb.add_field(name='Роль:', value=member.top_role, inline=False)
+    emb.add_field(name="На сервере с:", value=member.joined_at, inline=False)
+    # emb.add_field(name='ID:', value=member.id, inline=False)
+    emb.add_field(name="Аккаунт был создан:", value=member.created_at.strftime("%a, %#d %B %Y, %I:%M"),
+                  inline=False)
+    emb.set_thumbnail(url=member.avatar_url)
+    # emb.set_footer(text=f"Вызвано:{ctx.message.author}", icon_url=ctx.message.author.avatar_url)
+    emb.set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url)
+    await ctx.send(embed=emb)
 
 client.run(config.token)
