@@ -119,6 +119,11 @@ async def on_message(message):
             #await message.delete()
     await client.process_commands(message)
 
+@client.command(pass_context=True)
+async def lvl(ctx):
+    with open('D:\\Programming\\Python\\chuplend bot2\\chuplvls.json', 'r') as f:
+         users = json.load(f)
+    await ctx.send(f"У {ctx.author.mention} {users[str(ctx.author.id)]['lvl']} уровень, {round(users[str(ctx.author.id)]['xp'], 1)} опыта")
 
 @client.command(pass_context=True)
 async def poem(ctx, *, response):
