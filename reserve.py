@@ -63,7 +63,7 @@ async def on_raw_reaction_remove(payload):
 
 @client.event
 async def on_member_join(member):
-    channel = client.get_channel(543857438345003040)
+    channel = client.get_channel(816364829362749456)
     role = discord.utils.get(member.guild.roles, id=config.AUTOROLE)
     await channel.send(f"Приветствуем {member.mention} в волшебной стране Чупленд!\n"
                        f"Назначаю тебя Чупакабриком, надеюсь тебе понравится у нас.")
